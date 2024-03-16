@@ -1,1 +1,1 @@
-# System zarządzania zadaniamy w zespole programistów.
+# System zarządzania zadaniami w zespole programistów.
