@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="styles/index.css" />
+    <title>MDMP - Twój system do zarządzania zadaniami!</title>
   </head>
   <body>
-    Cześć
-    <button id="logout-button">Logout</button>
+    <h1>Witaj <span id="username"></span>!</h1>
+    <p>Twoja rola to: <span id="role"></span></p>
+    <button id="logoutButton">Wyloguj się</button>
   </body>
 </html>
 
 <script>
-  document.getElementById("logout-button").addEventListener("click", () => {
+  window.addEventListener("DOMContentLoaded", () => {
+    window.electron.getUser().then((user) => {
+      document.querySelector("#username").innerHTML = user.name;
+      document.querySelector("#role").innerHTML = user.role;
+    });
+  });
+  document.querySelector("#logoutButton").addEventListener("click", () => {
     window.electron.logout();
   });
 </script>

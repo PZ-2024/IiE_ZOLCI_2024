@@ -7,17 +7,41 @@ let mainWindow;
 let user;
 
 ipcMain.on("user:login", (event, data) => {
-  if (data.email === "dm122998@stud.ur.edu.pl" && data.password === "haslo") {
-    user = "Dominik Moskal";
-    goDashboard();
+  if (data.password === "haslo") {
+    if (data.email === "dm122998@stud.ur.edu.pl") {
+      user = {
+        name: "Domink",
+        role: "QA",
+      };
+      goDashboard();
+    } else if (data.email === "pm@gmail.com") {
+      user = {
+        name: "Project manager Marek",
+        role: "PM",
+      };
+      goDashboard();
+    } else if (data.email === "programista@gmail.com") {
+      user = {
+        name: "Programista Marek",
+        // like Software Designer
+        role: "SD",
+      };
+      goDashboard();
+    } else {
+      event.reply("login-failed", "Błędne dane logowania");
+    }
   } else {
-    event.reply("login-failed", "O jaki ty mądry jesteś!");
+    event.reply("login-failed", "Błędne dane logowania");
   }
 });
 
-ipcMain.on("user:logout", (event) => {
+ipcMain.on("user:logout", () => {
   user = null;
   goIndex();
+});
+
+ipcMain.handle("user:get", () => {
+  return user;
 });
 
 function createWindow() {

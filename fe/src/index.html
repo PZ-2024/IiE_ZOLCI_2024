@@ -1,43 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
   <head>
     <meta charset="UTF-8" />
-    <title>A Brief Electron demo with Okta</title>
+    <title>MDMP - Twój system do zarządzania zadaniami!</title>
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="styles/login.css" />
   </head>
 
   <body>
-    <h1>MDMP</h1>
+    <h1>MDMP - Twój system do zarządzania zadaniami!</h1>
 
-    <div class="container">
-      <h4>No dzień dobry, proszę się zalogować</h4>
+    <form class="form" id="loginForm">
+      <h2>Wprowadź swoje dane</h2>
 
-      <div>
+      <div class="form__inputs">
         <label for="email">Email</label>
         <input type="email" name="email" id="email" />
-
+      </div>
+      <div class="form__inputs">
         <label for="password">Hasło</label>
         <input type="password" name="password" id="password" />
       </div>
 
-      <div>
-        <button id="login-button">Login</button>
-      </div>
+      <button class="form__submit">Login</button>
 
-      <div id="error-message"></div>
-    </div>
+      <div id="errorMessage" class="form__error"></div>
+    </form>
   </body>
 
-  <style>
-    .container {
-      width: 60%;
-      margin: 0 auto;
-    }
-  </style>
-
   <script>
-    document.querySelector("#login-button").addEventListener("click", () => {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+    const form = document.querySelector("#loginForm");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.querySelector("#email").value;
+      const password = document.querySelector("#password").value;
 
       const data = {
         email,
