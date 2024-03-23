@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>A Brief Electron demo with Okta</title>
+  </head>
+
+  <body>
+    <h1>MDMP</h1>
+
+    <div class="container">
+      <h4>No dzień dobry, proszę się zalogować</h4>
+
+      <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" />
+
+        <label for="password">Hasło</label>
+        <input type="password" name="password" id="password" />
+      </div>
+
+      <div>
+        <button id="login-button">Login</button>
+      </div>
+
+      <div id="error-message"></div>
+    </div>
+  </body>
+
+  <style>
+    .container {
+      width: 60%;
+      margin: 0 auto;
+    }
+  </style>
+
+  <script>
+    document.querySelector("#login-button").addEventListener("click", () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const data = {
+        email,
+        password,
+      };
+
+      window.electron.login(data);
+    });
+  </script>
+</html>
