@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MDMP - Twój system do zarządzania zadaniami!</title>
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="styles/login.css" />
+  </head>
+
+  <body>
+    <h1>MDMP - Twój system do zarządzania zadaniami!</h1>
+
+    <form class="form" id="loginForm">
+      <h2>Wprowadź swoje dane</h2>
+
+      <div class="form__inputs">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" />
+      </div>
+      <div class="form__inputs">
+        <label for="password">Hasło</label>
+        <input type="password" name="password" id="password" />
+      </div>
+
+      <button class="form__submit">Login</button>
+
+      <div id="errorMessage" class="form__error"></div>
+    </form>
+  </body>
+
+  <script>
+    const form = document.querySelector("#loginForm");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.querySelector("#email").value;
+      const password = document.querySelector("#password").value;
+
+      const data = {
+        email,
+        password,
+      };
+
+      window.electron.login(data);
+    });
+  </script>
+</html>
